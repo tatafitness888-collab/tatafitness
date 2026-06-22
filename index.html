@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【你的名字】私人健身教練 | 專屬體態管理方案</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="香港專業私人健身教練，一對一體態管理、科學飲食指導。唔使捱餓、唔使死操，用適合你嘅方式，搵返健康自信嘅自己。">
+    <meta name="keywords" content="私人教練, 健身教練, 體態管理, 減脂, 香港健身">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="[cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="[cdnjs.cloudflare.com](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
+    
+    <!-- Google Fonts - 日韓風格字體 -->
+    <link rel="preconnect" href="[fonts.googleapis.com](https://fonts.googleapis.com)">
+    <link rel="preconnect" href="[fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
+    <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap)" rel="stylesheet">
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // 主色調 - 可自行修改
+                        'brand': {
+                            'primary': '#E8A598',      // 溫暖珊瑚粉
+                            'secondary': '#C4A484',    // 大地棕
+                            'accent': '#F5E6E0',       // 淡粉米色
+                            'dark': '#5D4E4E',         // 深棕灰
+                            'light': '#FBF8F6',        // 米白背景
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* 全局平滑滾動 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* CTA 按鈕呼吸燈動畫 */
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(232, 165, 152, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 20px 10px rgba(232, 165, 152, 0);
+            }
+        }
+        .btn-pulse {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        /* 懸停放大動畫 */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* 淡入動畫 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        /* FAQ 展開動畫 */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .faq-answer.open {
+            max-height: 500px;
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-dark bg-brand-light">
+
+    <!-- ============================================
+         NAVIGATION - 導航列
+         ============================================ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo / 名字 - 請替換 -->
+            <a href="#" class="text-xl font-medium text-brand-dark">
+                <span class="text-brand-primary">●</span> 你的名字
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 text-sm">
+                <a href="#about" class="hover:text-brand-primary transition">關於我</a>
+                <a href="#services" class="hover:text-brand-primary transition">訓練方案</a>
+                <a href="#results" class="hover:text-brand-primary transition">學員成果</a>
+                <a href="#faq" class="hover:text-brand-primary transition">常見問題</a>
+                <a href="#contact" class="bg-brand-primary text-white px-5 py-2 rounded-full hover:bg-brand-secondary transition">
+                    預約體驗
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t px-4 py-6 space-y-4">
+            <a href="#about" class="block py-2 hover:text-brand-primary">關於我</a>
+            <a href="#services" class="block py-2 hover:text-brand-primary">訓練方案</a>
+            <a href="#results" class="block py-2 hover:text-brand-primary">學員成果</a>
+            <a href="#faq" class="block py-2 hover:text-brand-primary">常見問題</a>
+            <a href="#contact" class="block bg-brand-primary text-white text-center py-3 rounded-full">
+                預約體驗
+            </a>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         HERO SECTION - 第一視覺
+         痛點：直接打中目標客群的核心焦慮
+         ============================================ -->
+    <section class="min-h-screen flex items-center pt-20 bg-gradient-to-b from-brand-accent to-brand-light">
+        <div class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 items-center">
+            
+            <!-- 左側文案 -->
+            <div class="order-2 md:order-1 text-center md:text-left animate-fadeInUp">
+                <!-- 小標 -->
+                <p class="text-brand-secondary text-sm tracking-widest mb-4">
+                    專屬你的體態管理旅程
+                </p>
+                
+                <!-- 主標語 - 這句要打中痛點 -->
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight mb-6">
+                    唔使再一個人<br>
+                    <span class="text-brand-primary">喺健身房感到迷失</span>
+                </h1>
+                
+                <!-- 副標 - 給出解決方案的承諾 -->
+                <p class="text-lg text-brand-dark/70 mb-8 leading-relaxed">
+                    減肥反彈、唔知點食、怕去 Gym 比人望？<br>
+                    我會用<strong>適合你生活節奏</strong>嘅方式，陪你一步步搵返自信。<br>
+                    <span class="text-brand-primary font-medium">唔使捱餓，唔使死操。</span>
+                </p>
+                
+                <!-- CTA 按鈕 -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#contact" class="btn-pulse inline-block bg-brand-primary text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-brand-secondary transition-all">
+                        <i class="fa-solid fa-calendar-check mr-2"></i>
+                        免費體態諮詢
+                    </a>
+                    <a href="#services" class="inline-block border-2 border-brand-dark/20 text-brand-dark px-8 py-4 rounded-full text-lg hover:border-brand-primary hover:text-brand-primary transition-all">
+                        了解更多
+                    </a>
+                </div>
+                
+                <!-- 信任指標 -->
+                <div class="mt-10 flex items-center justify-center md:justify-start gap-6 text-sm text-brand-dark/60">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-user-check text-brand-primary"></i>
+                        <span>100+ 學員信任</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-award text-brand-primary"></i>
+                        <span>國際認證教練</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 右側圖片 - 請替換為你的專業形象照 -->
+            <div class="order-1 md:order-2 flex justify-center">
+                <div class="relative">
+                    <!-- 主圖 -->
+                    <img 
+                        src="[images.unsplash.com](https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=800&fit=crop)" 
+                        alt="專業健身教練形象照"
+                        class="rounded-3xl shadow-2xl w-full max-w-md object-cover"
+                    >
+                    <!-- 裝飾元素 -->
+                    <div class="absolute -bottom-4 -left-4 w-24 h-24 bg-brand-primary/20 rounded-full blur-2xl"></div>
+                    <div class="absolute -top-4 -right-4 w-32 h-32 bg-brand-secondary/20 rounded-full blur-2xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ABOUT SECTION - 關於教練
+         建立情感連結 + 專業信任
+         ============================================ -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <p class="text-brand-primary text-sm tracking-widest mb-2">ABOUT ME</p>
+                <h2 class="text-3xl md:text-4xl font-medium">
+                    點解我會成為健身教練？
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                
+                <!-- 左側圖片 -->
+                <div class="relative">
+                    <img 
+                        src="[images.unsplash.com](https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=700&fit=crop)" 
+                        alt="教練訓練日常"
+                        class="rounded-2xl shadow-lg w-full object-cover"
+                    >
+                    <!-- 浮動卡片 - 經驗數據 -->
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl">
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-brand-primary">5+</p>
+                            <p class="text-sm text-brand-dark/60">年教學經驗</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右側故事文案 - 請根據真實經歷修改 -->
+                <div class="space-y-6">
+                    
+                    <!-- 個人故事 - 要有情感共鳴 -->
+                    <div class="space-y-4 text-brand-dark/80 leading-relaxed">
+                        <p>
+                            <span class="text-2xl">「</span>
+                            我以前都試過，望住鏡中嘅自己，唔知點算好。
+                        </p>
+                        <p>
+                            大學果陣，我靠節食減咗 10 公斤，但好快就反彈返，仲搞到成日攰、成日病。
+                            嗰時我先發現——<strong class="text-brand-dark">原來唔係意志力唔夠，係方法錯咗。</strong>
+                        </p>
+                        <p>
+                            之後我開始認真學習運動科學同營養學，考取國際認證，先真正明白：
+                            身體需要嘅係<span class="text-brand-primary font-medium">科學嘅訓練 + 食得飽嘅營養方案</span>，而唔係懲罰自己。
+                        </p>
+                        <p>
+                            所以我成為教練，就係想陪住每一位學員，用<strong>適合佢哋生活</strong>嘅方式，
+                            搵到屬於自己嘅健康節奏。
+                            <span class="text-2xl">」</span>
+                        </p>
+                    </div>
+                    
+                    <!-- 教練名字 & 簽名 -->
+                    <div class="pt-4">
+                        <p class="font-medium text-lg">— 你的名字</p>
+                        <p class="text-sm text-brand-dark/50">ACE 認證私人教練 / 運動營養專家</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 專業證照區塊 -->
+            <div class="mt-20">
+                <h3 class="text-center text-xl font-medium mb-10">專業資格認證</h3>
+                
+                <!-- 證照網格 - 請替換為你的證照 -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    
+                    <!-- 證照卡片 1 -->
+                    <div class="bg-brand-accent/50 p-6 rounded-xl text-center hover-lift">
+                        <i class="fa-solid fa-certificate text-3xl text-brand-primary mb-3"></i>
+                        <p class="font-medium">ACE-CPT</p>
+                        <p class="text-xs text-brand-dark/50 mt-1">美國運動協會認證私人教練</p>
+                    </div>
+                    
+                    <!-- 證照卡片 2 -->
+                    <div class="bg-brand-accent/50 p-6 rounded-xl text-center hover-lift">
+                        <i class="fa-solid fa-award text-3xl text-brand-primary mb-3"></i>
+                        <p class="font-medium">Precision Nutrition</p>
+                        <p class="text-xs text-brand-dark/50 mt-1">精準營養認證</p>
+                    </div>
+                    
+                    <!-- 證照卡片 3 -->
+                    <div class="bg-brand-accent/50 p-6 rounded-xl text-center hover-lift">
+                        <i class="fa-solid fa-heart-pulse text-3xl text-brand-primary mb-3"></i>
+                        <p class="font-medium">產前產後訓練</p>
+                        <p class="text-xs text-brand-dark/50 mt-1">專項認證</p>
+                    </div>
+                    
+                    <!-- 證照卡片 4 - 可繼續添加 -->
+                    <div class="bg-brand-accent/50 p-6 rounded-xl text-center hover-lift">
+                        <i class="fa-solid fa-dumbbell text-3xl text-brand-primary mb-3"></i>
+                        <p class="font-medium">TRX 認證教練</p>
+                        <p class="text-xs text-brand-dark/50 mt-1">懸吊訓練專家</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SERVICES SECTION - 服務方案
+         重點：賣價值，不只是賣價錢
+         ============================================ -->
+    <section id="services" class="py-20 bg-brand-light">
+        <div class="max-w-6xl mx-auto px-4">
+            
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <p class="text-brand-primary text-sm tracking-widest mb-2">TRAINING PLANS</p>
+                <h2 class="text-3xl md:text-4xl font-medium mb-4">
+                    揀選適合你嘅訓練方案
+                </h2>
+                <p class="text-brand-dark/60 max-w-xl mx-auto">
+                    每個人嘅身體、生活、目標都唔同，所以我準備咗唔同方案，總有一個啱你。
+                </p>
+            </div>
+            
+            <!-- 服務卡片 -->
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- 方案 1：1對1 私人教練 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover-lift border border-brand-accent">
+                    <!-- 標籤 -->
+                    <span class="inline-block bg-brand-primary/10 text-brand-primary text-xs px-3 py-1 rounded-full mb-4">
+                        最受歡迎
+                    </span>
+                    
+                    <h3 class="text-xl font-medium mb-2">1 對 1 私人訓練</h3>
+                    <p class="text-brand-dark/60 text-sm mb-6">
+                        完全根據你嘅身體狀況、目標、時間表度身定制，全程專注喺你身上。
+                    </p>
+                    
+                    <!-- 價錢 - 請替換 -->
+                    <div class="mb-6">
+                        <span class="text-3xl font-bold text-brand-dark">HKD $XXX</span>
+                        <span class="text-brand-dark/50 text-sm"> / 堂</span>
+                    </div>
+                    
+                    <!-- 包含內容 -->
+                    <ul class="space-y-3 mb-8 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-primary mt-1"></i>
+                            <span>免費 InBody 體脂測量 + 詳細分析</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-primary mt-1"></i>
+                            <span>客製化訓練計劃（每月更新）</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-primary mt-1"></i>
+                            <span>課後動作記錄影片</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-primary mt-1"></i>
+                            <span>WhatsApp 飲食問答（營業時間內）</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-primary mt-1"></i>
+                            <span>每月進度追蹤 & 計劃調整</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="block text-center bg-brand-primary text-white py-3 rounded-full hover:bg-brand-secondary transition">
+                        預約體驗課
+                    </a>
+                </div>
+                
+                <!-- 方案 2：小組課 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover-lift border border-brand-accent">
+                    <span class="inline-block bg-brand-secondary/10 text-brand-secondary text-xs px-3 py-1 rounded-full mb-4">
+                        高性價比
+                    </span>
+                    
+                    <h3 class="text-xl font-medium mb-2">小組訓練班</h3>
+                    <p class="text-brand-dark/60 text-sm mb-6">
+                        2-4 人小班，有專業指導又有夥伴互相支持，氣氛輕鬆好玩！
+                    </p>
+                    
+                    <div class="mb-6">
+                        <span class="text-3xl font-bold text-brand-dark">HKD $XXX</span>
+                        <span class="text-brand-dark/50 text-sm"> / 堂</span>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-primary mt-1"></i>
+                            <span>2-4 人小班制，唔會冇人理</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-primary mt-1"></i>
+                            <span>每堂 60 分鐘全身燃脂訓練</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-primary mt-1"></i>
+                            <span>動作指導 & 即時糾正</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-primary mt-1"></i>
+                            <span>送基礎飲食指南</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-primary mt-1"></i>
+                            <span>彈性時間，夜晚 / 週末都有</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="block text-center border-2 border-brand-primary text-brand-primary py-3 rounded-full hover:bg-brand-primary hover:text-white transition">
+                        查詢詳情
+                    </a>
+                </div>
+                
+                <!-- 方案 3：線上飲食指導 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover-lift border border-brand-accent">
+                    <span class="inline-block bg-green-100 text-green-600 text-xs px-3 py-1 rounded-full mb-4">
+                        唔使到場
+                    </span>
+                    
+                    <h3 class="text-xl font-medium mb-2">線上飲食指導</h3>
+                    <p class="text-brand-dark/60 text-sm mb-6">
+                        唔得閒做 Gym 都無問題，先從「食」開始改變，一樣可以瘦！
+                    </p>
+                    
+                    <div class="mb-6">
+                        <span class="text-3xl font-bold text-brand-dark">HKD $X,XXX</span>
+                        <span class="text-brand-dark/50 text-sm"> / 月</span>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-primary mt-1"></i>
+                            <span>1 對 1 視像諮詢（首次 45 分鐘）</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-primary mt-1"></i>
+                            <span>個人化飲食餐單建議</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-primary mt-1"></i>
+                            <span>WhatsApp 無限飲食問答</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-primary mt-1"></i>
+                            <span>每週飲食記錄 Review</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-primary mt-1"></i>
+                            <span>外食攻略 & 應酬食法</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="block text-center border-2 border-brand-primary text-brand-primary py-3 rounded-full hover:bg-brand-primary hover:text-white transition">
+                        了解更多
+                    </a>
+                </div>
+                
+            </div>
+            
+            <!-- 額外說明 -->
+            <div class="mt-12 text-center">
+                <p class="text-brand-dark/60">
+                    <i class="fa-solid fa-info-circle mr-2"></i>
+                    所有方案都可以先預約<strong>免費 15 分鐘諮詢</strong>，傾下你嘅目標同需求。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         RESULTS / TESTIMONIALS - 學員成果見證
+         社會認同 = 最強說服力
+         ============================================ -->
+    <section id="results" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <p class="text-brand-primary text-sm tracking-widest mb-2">SUCCESS STORIES</p>
+                <h2 class="text-3xl md:text-4xl font-medium mb-4">
+                    佢哋都做到，你都可以
+                </h2>
+                <p class="text-brand-dark/60 max-w-xl mx-auto">
+                    每一個成功嘅學員，都曾經同你一樣迷惘。<br>
+                    但佢哋選擇踏出第一步。
+                </p>
+            </div>
+            
+            <!-- Before / After 圖片區 -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                
+                <!-- 案例 1 -->
+                <div class="bg-brand-accent/30 p-6 rounded-2xl hover-lift">
+                    <div class="flex gap-4 mb-4">
+                        <!-- Before 圖 - 請替換 -->
+                        <div class="flex-1">
+                            <img 
+                                src="[images.unsplash.com](https://images.unsplash.com/photo-1594381898411-846e7d193883?w=300&h=400&fit=crop)" 
+                                alt="學員訓練前"
+                                class="w-full h-48 object-cover rounded-lg"
+                            >
+                            <p class="text-center text-xs mt-2 text-brand-dark/50">BEFORE</p>
+                        </div>
+                        <!-- After 圖 - 請替換 -->
+                        <div class="flex-1">
+                            <img 
+                                src="[images.unsplash.com](https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=300&h=400&fit=crop)" 
+                                alt="學員訓練後"
+                                class="w-full h-48 object-cover rounded-lg"
+                            >
+                            <p class="text-center text-xs mt-2 text-brand-dark/50">AFTER</p>
+                        </div>
+                    </div>
+                    <!-- 成果數據 -->
+                    <div class="text-center mb-4">
+                        <p class="text-brand-primary font-bold text-lg">3 個月 | 體脂 -6%</p>
+                    </div>
+                    <!-- 學員感言 -->
+                    <p class="text-sm text-brand-dark/70 italic">
+                        「以前我試過好多方法，節食、跑步，每次都反彈。跟住教練之後先知道，原來食得飽都可以瘦！
+                        依家終於敢著背心出街。」
+                    </p>
+                    <p class="text-right text-sm font-medium mt-3">— A 小姐，行政人員</p>
+                </div>
+                
+                <!-- 案例 2 -->
+                <div class="bg-brand-accent/30 p-6 rounded-2xl hover-lift">
+                    <div class="flex gap-4 mb-4">
+                        <div class="flex-1">
+                            <img 
+                                src="[images.unsplash.com](https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=400&fit=crop)" 
+                                alt="學員訓練前"
+                                class="w-full h-48 object-cover rounded-lg"
+                            >
+                            <p class="text-center text-xs mt-2 text-brand-dark/50">BEFORE</p>
+                        </div>
+                        <div class="flex-1">
+                            <img 
+                                src="[images.unsplash.com](https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=300&h=400&fit=crop)" 
+                                alt="學員訓練後"
+                                class="w-full h-48 object-cover rounded-lg"
+                            >
+                            <p class="text-center text-xs mt-2 text-brand-dark/50">AFTER</p>
+                        </div>
+                    </div>
+                    <div class="text-center mb-4">
+                        <p class="text-brand-primary font-bold text-lg">6 個月 | 減重 12 公斤</p>
+                    </div>
+                    <p class="text-sm text-brand-dark/70 italic">
+                        「產後肥咗好多，以為呢世都冇得救。教練好有耐性，仲會配合我湊仔嘅時間表。
+                        依家件婚紗終於著得返！」
+                    </p>
+                    <p class="text-right text-sm font-medium mt-3">— B 太太，全職媽媽</p>
+                </div>
+                
+                <!-- 案例 3 -->
+                <div class="bg-brand-accent/30 p-6 rounded-2xl hover-lift">
+                    <div class="flex gap-4 mb-4">
+                        <div class="flex-1">
+                            <img 
+                                src="[images.unsplash.com](https://images.unsplash.com/photo-1434682881908-b43d0467b798?w=300&h=400&fit=crop)" 
+                                alt="學員訓練前"
+                                class="w-full h-48 object-cover rounded-lg"
+                            >
+                            <p class="text-center text-xs mt-2 text-brand-dark/50">BEFORE</p>
+                        </div>
+                        <div class="flex-1">
+                            <img 
+                                src="[images.unsplash.com](https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=300&h=400&fit=crop)" 
+                                alt="學員訓練後"
+                                class="w-full h-48 object-cover rounded-lg"
+                            >
+                            <p class="text-center text-xs mt-2 text-brand-dark/50">AFTER</p>
+                        </div>
+                    </div>
+                    <div class="text-center mb-4">
+                        <p class="text-brand-primary font-bold text-lg">4 個月 | 體脂 -5% 肌肉 +3kg</p>
+                    </div>
+                    <p class="text-sm text-brand-dark/70 italic">
+                        「以前成日 OT，食飯又亂咁食。教練教我點樣喺忙碌生活入面搵到平衡，
+                        依家精神好咗好多，連老闆都問我係咪去咗旅行。」
+                    </p>
+                    <p class="text-right text-sm font-medium mt-3">— C 先生，會計師</p>
+                </div>
+                
+            </div>
+            
+            <!-- 更多評價 - 文字版 -->
+            <div class="bg-brand-accent/50 p-8 md:p-12 rounded-2xl">
+                <h3 class="text-center text-xl font-medium mb-8">學員真心話</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    
+                    <div class="bg-white p-6 rounded-xl">
+                        <div class="flex gap-1 text-yellow-400 mb-3">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-sm text-brand-dark/70 mb-3">
+                            「第一次唔覺得做 Gym 係一件痛苦嘅事。教練好識循循善誘，唔會迫你一開始就舉好重。
+                            每次訓練完都好有成就感！」
+                        </p>
+                        <p class="text-sm font-medium">— D 小姐</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl">
+                        <div class="flex gap-1 text-yellow-400 mb-3">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-sm text-brand-dark/70 mb-3">
+                            「我係完全零經驗嗰種，去到 Gym 連部機都唔識用。教練好有耐性教我每一個動作，
+                            依家我自己都識做 Free weight！」
+                        </p>
+                        <p class="text-sm font-medium">— E 小姐</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FAQ SECTION - 常見問題
+         消除最後的猶豫
+         ============================================ -->
+    <section id="faq" class="py-20 bg-brand-light">
+        <div class="max-w-3xl mx-auto px-4">
+            
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <p class="text-brand-primary text-sm tracking-widest mb-2">FAQ</p>
+                <h2 class="text-3xl md:text-4xl font-medium mb-4">
+                    你可能想問嘅問題
+                </h2>
+                <p class="text-brand-dark/60">
+                    如果仲有其他疑問，隨時 WhatsApp 我傾傾！
+                </p>
+            </div>
+            
+            <!-- FAQ Accordion -->
+            <div class="space-y-4">
+                
+                <!-- FAQ 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full flex items-center justify-between p-6 text-left">
+                        <span class="font-medium">我完全零基礎，從未做過 Gym，適合嗎？</span>
+                        <i class="fa-solid fa-chevron-down text-brand-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 text-brand-dark/70">
+                        <p>
+                            完全適合！我嘅學員有一半以上都係由零開始。我會由最基礎嘅動作教起，
+                            確保你每一下都做得正確、安全，先至會慢慢加強度。
+                            <strong>完全唔使驚，跟住我一步步嚟就得！</strong>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full flex items-center justify-between p-6 text-left">
+                        <span class="font-medium">減肥係咪一定要戒澱粉、戒糖？</span>
+                        <i class="fa-solid fa-chevron-down text-brand-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 text-brand-dark/70">
+                        <p>
+                            <strong>唔使！</strong>我唔會要求你完全戒任何食物。極端嘅飲食方法好難長期維持，
+                            而且通常會反彈。我會教你點樣「聰明咁揀、開心咁食」，
+                            就算去飯聚、食甜品都可以 fit 入你嘅計劃。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full flex items-center justify-between p-6 text-left">
+                        <span class="font-medium">我唔想變大隻，只想瘦同線條靚，會唔會練到好大隻？</span>
+                        <i class="fa-solid fa-chevron-down text-brand-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 text-brand-dark/70">
+                        <p>
+                            放心！女仔因為荷爾蒙關係，好難好難練到「大隻」。
+                            我哋嘅訓練會著重<strong>塑形、緊緻、提升線條</strong>，
+                            令你睇落更修長、更有力量感，而唔係變成大隻妹！
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full flex items-center justify-between p-6 text-left">
+                        <span class="font-medium">我一定要買 Gym 會籍先可以跟你練嗎？</span>
+                        <i class="fa-solid fa-chevron-down text-brand-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 text-brand-dark/70">
+                        <p>
+                            唔一定！我會喺 [請填寫：你的訓練場地名稱] 進行訓練，
+                            單次入場費已經包含喺課堂費用入面，唔使另外買會籍。
+                            如果你已經有自己嘅 Gym 會籍，我亦可以配合喺你嗰邊練。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full flex items-center justify-between p-6 text-left">
+                        <span class="font-medium">幾耐先會見到成效？</span>
+                        <i class="fa-solid fa-chevron-down text-brand-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 text-brand-dark/70">
+                        <p>
+                            每個人身體唔同，但一般嚟講：
+                        </p>
+                        <ul class="mt-2 space-y-1">
+                            <li>• <strong>2-3 星期</strong>：開始感覺精神好咗、睡眠質素提升</li>
+                            <li>• <strong>4-6 星期</strong>：衫開始鬆咗、力量提升</li>
+                            <li>• <strong>8-12 星期</strong>：明顯嘅體態改變，可以見到 Before/After 分別</li>
+                        </ul>
+                        <p class="mt-2">
+                            當然，最重要係<strong>堅持</strong>，我會一路陪住你！
+                        </p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONTACT / CTA SECTION - 聯絡與預約
+         最終轉換點
+         ============================================ -->
+    <section id="contact" class="py-20 bg-gradient-to-b from-brand-primary/10 to-brand-accent">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            
+            <!-- 情感呼籲 -->
+            <h2 class="text-3xl md:text-4xl font-medium mb-6">
+                準備好改變自己了嗎？
+            </h2>
+            <p class="text-lg text-brand-dark/70 mb-8 max-w-2xl mx-auto leading-relaxed">
+                你已經搵資料、睇文章、follow IG 好耐了——<br>
+                但<strong>睇同做，係兩回事</strong>。<br><br>
+                畀自己一個機會，嚟傾 15 分鐘，<br>
+                等我了解下你嘅目標同需求，睇下可以點樣幫到你。<br>
+                <span class="text-brand-primary font-medium">完全免費，冇壓力。</span>
+            </p>
+            
+            <!-- CTA 按鈕 -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <!-- WhatsApp 按鈕 - 請替換電話號碼 -->
+                <a 
+                    href="[wa.me](https://wa.me/852XXXXXXXX?text=Hi！我想了解下你嘅訓練方案～)" 
+                    target="_blank"
+                    class="btn-pulse inline-flex items-center justify-center gap-3 bg-green-500 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-green-600 transition-all"
+                >
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    WhatsApp 即時諮詢
+                </a>
+                
+                <!-- Instagram 按鈕 - 請替換 -->
+                <a 
+                    href="[instagram.com](https://instagram.com/your_instagram)" 
+                    target="_blank"
+                    class="inline-flex items-center justify-center gap-3 bg-white text-brand-dark px-8 py-4 rounded-full text-lg font-medium hover:bg-brand-dark hover:text-white transition-all border border-brand-dark/10"
+                >
+                    <i class="fa-brands fa-instagram text-2xl"></i>
+                    追蹤 Instagram
+                </a>
+            </div>
+            
+            <!-- 訓練地點 -->
+            <div class="bg-white p-6 rounded-2xl inline-block shadow-sm">
+                <p class="text-sm text-brand-dark/60 mb-2">訓練地點</p>
+                <p class="font-medium">
+                    <i class="fa-solid fa-location-dot text-brand-primary mr-2"></i>
+                    <!-- 請替換地址 -->
+                    香港 [地區] [健身室名稱]
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="bg-brand-dark text-white py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                <!-- Logo / Copyright -->
+                <div class="text-center md:text-left">
+                    <p class="text-xl font-medium mb-2">
+                        <span class="text-brand-primary">●</span> 你的名字
+                    </p>
+                    <p class="text-sm text-white/50">
+                        © 2024 All Rights Reserved. 
+                    </p>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="flex gap-4">
+                    <a href="[instagram.com](https://instagram.com/your_instagram)" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-brand-primary transition">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="[wa.me](https://wa.me/852XXXXXXXX)" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-500 transition">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <!-- 可以加更多社交連結 -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // FAQ Accordion
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                // Close other open FAQs
+                document.querySelectorAll('.faq-answer').forEach(item => {
+                    if (item !== answer) {
+                        item.classList.remove('open');
+                        item.previousElementSibling.querySelector('i').style.transform = 'rotate(0deg)';
+                    }
+                });
+                
+                // Toggle current FAQ
+                answer.classList.toggle('open');
+                icon.style.transform = answer.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        });
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+
+</body>
+</html>
